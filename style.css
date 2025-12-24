@@ -208,9 +208,6 @@ button:hover {
   font-weight: 600;
 }
 
-/* =========================
-   9. ANIMATIONS
-========================= */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -225,9 +222,7 @@ button:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================
-   10. ACCESSIBILITY
-========================= */
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -235,12 +230,10 @@ button:hover {
   }
 }
 
-/* =========================
-   11. MOBILE
-========================= */
 @media (max-width: 600px) {
   body::before { animation: none; }
   .nav-links { display: none; }
   .container { margin-top: 5rem; padding: 1.5rem; }
 }
+
 
