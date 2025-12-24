@@ -28,9 +28,6 @@
   --shadow-heavy: 0 20px 40px rgba(0,0,0,0.35);
 }
 
-/* =========================
-   2. BASE
-========================= */
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--bg-gradient);
@@ -39,7 +36,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Animated background */
 body::before {
   content: '';
   position: fixed;
@@ -52,9 +48,6 @@ body::before {
   z-index: -1;
 }
 
-/* =========================
-   3. NAVBAR
-========================= */
 .navbar {
   position: sticky;
   top: 0;
@@ -102,9 +95,6 @@ body::before {
   background: rgba(255,255,255,.2);
 }
 
-/* =========================
-   4. LAYOUT
-========================= */
 .container {
   background: var(--glass-bg);
   backdrop-filter: blur(14px);
@@ -223,6 +213,7 @@ button:hover {
   .nav-links { display: none; }
   .container { margin-top: 5rem; padding: 1.5rem; }
 }
+
 
 
 
