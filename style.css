@@ -1,251 +1,249 @@
-/* All CSS from your <style> tag, without <style> tags themselves */
-* {
+/* =========================
+   1. RESET & VARIABLES
+========================= */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-  --card-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --text-primary: #ffffff;
-  --text-secondary: #e0e6ed;
-  --accent-color: #667eea;
+  /* Colors */
+  --accent-primary: #7f00ff;
+  --accent-secondary: #e100ff;
   --error-color: #ff6b6b;
   --success-color: #51cf66;
-  --shadow-light: 0 8px 32px rgba(31, 38, 135, 0.37);
-  --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+  /* Gradients */
+  --bg-gradient: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
+  --card-gradient: linear-gradient(135deg, #4A00E0, #8E2DE2);
+  --button-gradient: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #e0e6ed;
+
+  /* Effects */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --shadow-soft: 0 8px 24px rgba(0,0,0,0.25);
+  --shadow-heavy: 0 20px 40px rgba(0,0,0,0.35);
 }
 
+/* =========================
+   2. BASE
+========================= */
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--dark-gradient);
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-gradient);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* Animated background particles */
+/* Animated background */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120,119,198,.3), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,119,198,.3), transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120,219,255,.3), transparent 50%);
   animation: float 20s ease-in-out infinite;
   z-index: -1;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-30px) rotate(120deg); }
-  66% { transform: translateY(-60px) rotate(240deg); }
-}
-
-/* Navbar */
+/* =========================
+   3. NAVBAR
+========================= */
 .navbar {
-  display: flex; align-items: center; justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
-  background: linear-gradient(to bottom right,
-    hsla(203,92%,35%,0.25),
-    hsl(270,60%,15%),
-    hsla(27.6,87.1%,35%,0.25));
-  background-color: hsl(270,60%,15%);
-  color: #fff;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
 }
-.nav-links { list-style: none; display: flex; gap: 1.5rem; }
-.nav-links a { color: #fff; text-decoration: none; padding:5px 10px; border-radius:5px; }
-.nav-links a:hover { background: rgba(255,255,255,0.1); }
-.nav-btn {
-  background: none; color:#fff; border:1px solid #fff;
-  padding:0.5rem 1rem; border-radius:5px; cursor:pointer;
-  transition: background 0.2s;
-}
-.nav-btn:hover { background: rgba(255,255,255,0.2); }
 
-/* Base styles */
-*{box-sizing:border-box;margin:0;padding:0;}
-body{
-  font-family:'Segoe UI',sans-serif;
-  display:flex;flex-direction:column;align-items:center;
-  background:linear-gradient(135deg,#0f112f,#1c1e4b);
-  color:#fff;
+.navbar.scrolled {
+  background: rgba(0,0,0,0.6);
+  box-shadow: var(--shadow-soft);
 }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: .4rem .7rem;
+  border-radius: 6px;
+}
+
+.nav-links a:hover {
+  background: rgba(255,255,255,.15);
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,.2);
+}
+
+/* =========================
+   4. LAYOUT
+========================= */
 .container {
-  background: #181b3a;
-  margin-top: 2rem;
-  padding: 2.5rem 2rem 2rem 2rem;
-  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+  margin: 6rem auto 2rem;
+  padding: 2.2rem;
+  border-radius: 22px;
   width: 95%;
   max-width: 500px;
   text-align: center;
-  border: 2px solid #5d60f0;
-  box-shadow: 0 0 24px rgba(128,0,255,0.25);
-  transition: box-shadow 0.3s;
-}
-.container:focus-within, .container:hover {
-  box-shadow: 0 0 32px 4px #7f00ff44;
-}
-.input-group {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-  align-items: center;
-}
-input, button{font-size:1rem;}
-input {
-  flex: 1;
-  padding: 14px;
-  background: #fff;
-  color: #222;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  transition: box-shadow 0.2s;
-}
-input:focus {
-  box-shadow: 0 0 0 2px #7f00ff55;
-}
-button {
-  padding: 14px 18px;
-  background: linear-gradient(to right, #7f00ff, #e100ff);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform .2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px #7f00ff22;
-}
-button:focus, button:hover {
-  transform: scale(1.07);
-  box-shadow: 0 4px 16px #e100ff33;
 }
 
-/* Loader */
+/* =========================
+   5. INPUTS & BUTTONS
+========================= */
+.input-group {
+  display: flex;
+  gap: .7rem;
+  margin-bottom: 1.5rem;
+}
+
+input {
+  flex: 1;
+  padding: .9rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px var(--accent-primary);
+}
+
+button {
+  padding: .9rem 1.1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--button-gradient);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* =========================
+   6. LOADER
+========================= */
 .loader {
-  margin: 24px auto;
-  width: 44px;
-  height: 44px;
-  border: 5px solid rgba(255,255,255,0.18);
+  margin: 1.5rem auto;
+  width: 42px;
+  height: 42px;
+  border: 5px solid rgba(255,255,255,.2);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  box-shadow: 0 0 12px #fff2;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+
 .hidden { display: none; }
 
-/* Card layout */
-.card-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  margin-top: 24px;
-}
-.gradient-card {
-  position: relative;
-  background: linear-gradient(135deg, #4A00E0, #8E2DE2);
-  border-radius: 18px;
-  padding: 28px 20px 24px 20px;
-  width: 100%;
-  max-width: 340px;
-  min-height: 370px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
-  transition: transform .3s, box-shadow .3s;
-}
-.gradient-card:hover, .gradient-card:focus-within {
-  transform: translateY(-7px) scale(1.01);
-  box-shadow: 0 8px 36px rgba(0,0,0,0.35);
-}
-.gradient-card .tag {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  background: rgba(255,255,255,0.18);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: .9rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+/* =========================
+   7. WEATHER CARD
+========================= */
+.weather-card {
+  background: var(--card-gradient);
+  border-radius: 20px;
+  padding: 1.8rem 1.4rem;
+  box-shadow: var(--shadow-heavy);
+  animation: fadeUp .4s ease;
 }
 
-/* Show animation */
-.weather-card{
-  opacity:0;transform:scale(.95);
-  transition:opacity .4s,transform .4s;
-}
-.weather-card:not(.hidden) {
-  opacity: 1;
-  transform: scale(1);
-}
 .weather-card img {
-  width: 110px;
+  width: 100px;
+  margin: 1rem auto;
   display: block;
-  margin: 18px auto 10px auto;
-  filter: drop-shadow(0 2px 8px #0004);
 }
+
 .weather-card p {
-  margin: 10px 0;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  color: #e0e0ff;
-  font-size: 1.08rem;
-  letter-spacing: 0.1px;
+  margin: .6rem 0;
+  padding-top: .6rem;
+  border-top: 1px solid rgba(255,255,255,.15);
+  color: var(--text-secondary);
 }
+
 .weather-card p:first-of-type {
   border-top: none;
-  padding-top: 0;
 }
 
+/* =========================
+   8. MESSAGES
+========================= */
 .error {
-  color: #ff4c4c;
-  font-weight: bold;
-  margin-top: 18px;
-  background: rgba(255,76,76,0.08);
-  padding: 10px 0;
+  margin-top: 1rem;
+  padding: .6rem;
+  background: rgba(255,0,0,.1);
+  color: var(--error-color);
   border-radius: 8px;
-  min-height: 24px;
-  transition: background 0.2s;
+  font-weight: 600;
 }
 
-/* Add this for success message animation */
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
+/* =========================
+   9. ANIMATIONS
+========================= */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   10. ACCESSIBILITY
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
+/* =========================
+   11. MOBILE
+========================= */
 @media (max-width: 600px) {
-  .container {
-    margin-top: 80px;
-    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
-    max-width: 98vw;
-  }
-  .gradient-card {
-    padding: 18px 6px 18px 6px;
-    min-height: 320px;
-  }
-  .weather-card img {
-    width: 80px;
-  }
-}
-@media (max-width: 500px) {
+  body::before { animation: none; }
   .nav-links { display: none; }
-  .container { margin-top: 90px; }
-  .gradient-card { min-height: 260px; }
+  .container { margin-top: 5rem; padding: 1.5rem; }
 }
