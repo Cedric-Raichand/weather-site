@@ -118,9 +118,6 @@ body::before {
   text-align: center;
 }
 
-/* =========================
-   5. INPUTS & BUTTONS
-========================= */
 .input-group {
   display: flex;
   gap: .7rem;
@@ -153,9 +150,6 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* =========================
-   6. LOADER
-========================= */
 .loader {
   margin: 1.5rem auto;
   width: 42px;
@@ -168,9 +162,6 @@ button:hover {
 
 .hidden { display: none; }
 
-/* =========================
-   7. WEATHER CARD
-========================= */
 .weather-card {
   background: var(--card-gradient);
   border-radius: 20px;
@@ -196,9 +187,6 @@ button:hover {
   border-top: none;
 }
 
-/* =========================
-   8. MESSAGES
-========================= */
 .error {
   margin-top: 1rem;
   padding: .6rem;
@@ -235,5 +223,6 @@ button:hover {
   .nav-links { display: none; }
   .container { margin-top: 5rem; padding: 1.5rem; }
 }
+
 
 
